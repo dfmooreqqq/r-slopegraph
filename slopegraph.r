@@ -196,10 +196,11 @@ theme_slopegraph <- function (base_size = 12, base_family = "") {
 plot_slopegraph <- function(df) {
     ylabs <- subset(df, x==head(x,1))$group
     yvals <- subset(df, x==head(x,1))$ypos
-    fontSize <- 2.5
+    fontSize <- 4
     gg <- ggplot(df,aes(x=x,y=ypos)) +
-        geom_line(aes(group=group),colour="grey80") +
-        geom_point(colour="white",size=8) +
+        geom_line(aes(group=group, colour=group) #,colour="grey80"
+                  ) +
+        geom_point(colour="white",size=12) +
         geom_text(aes(label=y),size=fontSize) +
         scale_y_continuous(name="", breaks=yvals, labels=ylabs)
     gg.form <- gg + theme_slopegraph()
